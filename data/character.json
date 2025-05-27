@@ -1,0 +1,131 @@
+[
+  {
+    "name": "Phainon",
+    "base_stat": {
+      "hp": 1435.9,
+      "atk": 562.72,
+      "def_": 727.65,
+      "crit_rate": 0.05,
+      "crit_dmg": 0.5,
+      "spd": 94.0,
+      "e_dmg": 0.0,
+      "energy": 12
+    },
+
+    "trace": [
+      { "stat": "hp", "boost_type": "percentage", "value": 0.0 },
+      { "stat": "atk", "boost_type": "percentage", "value": 0.0 },
+      { "stat": "def_", "boost_type": "percentage", "value": 0.0 },
+      { "stat": "spd", "boost_type": "flat", "value": 5.0 },
+      { "stat": "crit_rate", "boost_type": "percentage", "value": 0.12 },
+      { "stat": "crit_dmg", "boost_type": "percentage", "value": 0.373 },
+      { "stat": "e_dmg", "boost_type":"percentage", "value": 0.0 }
+    ],
+
+    "attack": [
+      {
+        "name": "Basic Attack",
+        "multiplier": 1.0,
+        "scaling_stat": "atk",
+        "target_type": "single",
+        "blast_multiplier": 1.0,
+        "boost": []
+      },
+      {
+        "name": "Skill",
+        "multiplier": 3.0,
+        "scaling_stat": "atk",
+        "target_type": "blast",
+        "blast_multiplier": 1.2,
+        "boost": []
+      },
+      {
+        "name": "Ultimate",
+        "multiplier": 9.6,
+        "scaling_stat": "atk",
+        "target_type": "single",
+        "blast_multiplier": 1.0,
+        "boost": [
+          { "stat": "atk", "boost_type": "percentage", "value": 0.8 },
+          { "stat": "hp", "boost_type": "percentage", "value": 2.4 }
+        ]
+      },
+      {
+        "name": "Enhanced Basic Attack",
+        "multiplier": 2.5,
+        "scaling_stat": "atk",
+        "target_type": "blast",
+        "blast_multiplier": 0.75,
+        "boost": [
+          { "stat": "atk", "boost_type": "percentage", "value": 0.8 },
+          { "stat": "hp", "boost_type": "percentage", "value": 2.4 }
+        ]
+      },
+      {
+        "name": "Enhanced Skill",
+        "multiplier": 18.0,
+        "scaling_stat": "atk",
+        "target_type": "single",
+        "blast_multiplier": 1.0,
+        "boost": [
+          { "stat": "atk", "boost_type": "percentage", "value": 0.8 },
+          { "stat": "hp", "boost_type": "percentage", "value": 2.4 }
+        ]
+      },
+      {
+        "name": "Counter",
+        "multiplier": 0.4,
+        "scaling_stat": "atk",
+        "target_type": "aoe",
+        "blast_multiplier": 1.0,
+        "boost": [
+          { "stat": "atk", "boost_type": "percentage", "value": 0.8 },
+          { "stat": "hp", "boost_type": "percentage", "value": 2.4 }
+        ]
+      }
+    ],
+
+    "talent": [
+      {
+        "stat": "crit_dmg",
+        "boost_type": "percentage",
+        "value": 0.3,
+        "condition": "ally_ability_target"
+      },
+      {
+        "stat": "atk",
+        "boost_type": "percentage",
+        "value": 0.8,
+        "condition": "during_ultimate"
+      },
+      {
+        "stat": "hp",
+        "boost_type": "percentage",
+        "value": 2.4,
+        "condition": "during_ultimate"
+      }
+    ]
+  },
+
+  {
+    "name": "Acheron",
+    "base_stat": {
+      "hp": 1125.4,
+      "atk": 698.54,
+      "def_": 436.59,
+      "crit_rate": 0.05,
+      "crit_dmg": 0.5,
+      "spd": 101.0,
+      "energy": 9
+    },
+    "trace": [
+      { "stat": "hp", "boost_type": "percentage", "value": 0.28 },
+      { "stat": "atk", "boost_type": "percentage", "value": 0 },
+      { "stat": "def_", "boost_type": "percentage", "value": 0 },
+      { "stat": "crit_dmg", "boost_type": "percentage", "value": 0.24 },
+      { "stat": "crit_rate", "boost_type": "percentage", "value": 0 },
+      { "stat": "spd", "boost_type": "flat", "value": 0 },
+      { "stat": "dmg", "boost_type":"flat", "value": 0.08 }
+    ]
+  }
+]

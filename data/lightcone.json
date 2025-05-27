@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Thus Burns the Dawn",
+    "base_stat": {
+      "hp": 952.6,
+      "atk": 687.96,
+      "def_": 396.90,
+      "crit_rate": 0.0,
+      "crit_dmg": 0.0,
+      "spd": 12.0,
+      "e_dmg": 0.0
+    },
+
+    "passive": [
+      { "stat": "def_ign", "boost_type": "percentage", "value": 0.18 }
+    ]
+  }
+]
