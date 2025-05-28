@@ -1,4 +1,5 @@
 from classes import Character, Lightcone, Stat, Trace, Attack
+import copy
 
 def calculate_pre_combat_stats(character, lightcone):
     # Combined Base Stats
@@ -14,24 +15,25 @@ def calculate_pre_combat_stats(character, lightcone):
     )
 
     # Boosts
-    percentage_boost = Stat(**{k: 0 for k in ['hp', 'atk', 'def_', 'spd', 'crit_rate', 'crit_dmg', 'e_dmg', 'energy']})
-    flat_boost = Stat(**{k: 0 for k in ['hp', 'atk', 'def_', 'spd', 'crit_rate', 'crit_dmg', 'e_dmg', 'energy']})
+    percentage_boost = Stat.default()
+    flat_boost = Stat.default()
 
     # Traces (update the json files after adding stuff!)
     for trace in character.trace:
         if trace.boost_type == "percentage":
-            if trace.stat == "hp":
-                percentage_boost.hp += trace.value
-            elif trace.stat == "atk":
-                percentage_boost.atk += trace.value
-            elif trace.stat == "def_":
-                percentage_boost.def_ += trace.value
-            elif trace.stat == "crit_rate":
-                percentage_boost.crit_rate += trace.value
-            elif trace.stat == "crit_dmg":
-                percentage_boost.crit_dmg += trace.value
-            elif trace.stat == "e_dmg":
-                percentage_boost.e_dmg += trace.value
+            match trace.stat:
+                case "hp":
+                    percentage_boost.hp += trace.value
+                case "atk":
+                    percentage_boost.atk += trace.value
+                case "def_":
+                    percentage_boost.def_ += trace.value
+                case "crit_rate":
+                    percentage_boost.crit_rate += trace.value
+                case "crit_dmg":
+                    percentage_boost.crit_dmg += trace.value
+                case "e_dmg":
+                    percentage_boost.e_dmg += trace.value
         elif trace.boost_type == "flat":
             if trace.stat == "spd":
                 flat_boost.spd += trace.value
@@ -116,32 +118,34 @@ def calculate_expected_damage(
         attack: Attack
     ):
     
-    attack_percentage_boost = Stat(**percentage_boost.__dict__)
-    attack_flat_boost = Stat(**flat_boost.__dict__)
+    attack_percentage_boost = copy.copy(percentage_boost)
+    attack_flat_boost = copy.copy(flat_boost)
 
     for boost in attack.boost:
         if boost["boost_type"] == "percentage":
-            if boost["stat"] == "hp":
-                attack_percentage_boost.hp += boost["value"]
-            elif boost["stat"] == "atk":
-                attack_percentage_boost.atk += boost["value"]
-            elif boost["stat"] == "def_":
-                attack_percentage_boost.def_ += boost["value"]
-            elif boost["stat"] == "crit_rate":
-                attack_percentage_boost.crit_rate += boost["value"]
-            elif boost["stat"] == "crit_dmg":
-                attack_percentage_boost.crit_dmg += boost["value"]
-            elif boost["stat"] == "e_dmg":
-                attack_percentage_boost.e_dmg += boost["value"]
+            match boost["stat"]:
+                case "hp":
+                    attack_percentage_boost.hp += boost["value"]
+                case "atk":
+                    attack_percentage_boost.atk += boost["value"]
+                case "def_":
+                    attack_percentage_boost.def_ += boost["value"]
+                case "crit_rate":
+                    attack_percentage_boost.crit_rate += boost["value"]
+                case "crit_dmg":
+                    attack_percentage_boost.crit_dmg += boost["value"]
+                case "e_dmg":
+                    attack_percentage_boost.e_dmg += boost["value"]
         elif boost["boost_type"] == "flat":
-            if boost["stat"] == "hp":
-                attack_flat_boost.hp += boost["value"]
-            elif boost["stat"] == "atk":
-                attack_flat_boost.atk += boost["value"]
-            elif boost["stat"] == "def_":
-                attack_flat_boost.def_ += boost["value"]
-            elif boost["stat"] == "spd":
-                attack_flat_boost.spd += boost["value"]
+            match boost["stat"]:
+                case "hp":
+                    attack_flat_boost.hp += boost["value"]
+                case "atk":
+                    attack_flat_boost.atk += boost["value"]
+                case "def_":
+                    attack_flat_boost.def_ += boost["value"]
+                case "spd":
+                    attack_flat_boost.spd += boost["value"]
 
     # Attack-Specific Stats
     attack_stat = Stat(

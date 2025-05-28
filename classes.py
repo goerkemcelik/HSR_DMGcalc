@@ -21,6 +21,10 @@ class Stat:
         self.spd = spd
         self.e_dmg = e_dmg
         self.energy = energy
+    
+    @staticmethod
+    def default():
+        return Stat(**{k: 0 for k in ['hp', 'atk', 'def_', 'spd', 'crit_rate', 'crit_dmg', 'e_dmg', 'energy']})
 
 class Trace:
     def __init__(self, stat, boost_type, value):
